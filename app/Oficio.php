@@ -9,11 +9,11 @@ class Oficio extends Model
     //
     
  protected $fillable = [
-'no_oficio', 'remitente_c','remitente_e','remitente_id', 'destinatario_id', 'autor_id', 'user_id', 'fecha_emision', 'asunto', 'archivo','seguimiento','contestacion'
+'no_oficio', 'remitente_c','remitente_e','remitente_id', 'destinatario_id', 'autor_id', 'user_id', 'fecha_emision', 'asunto','descripcion', 'archivo','seguimiento','contestacion'
  ];
 
 
- protected $appends =['origen','destino','dependenciao','areadestino'];
+ protected $appends =['origen','destino','dependenciao','areadestino','remitenteresponse'];
   
   
   public function getOrigenAttribute() {
@@ -41,6 +41,20 @@ public function getDependenciaoAttribute() {
 
 
 
+public function getRemitenteresponseAttribute() {
+
+    ///en este contexto $this hace referencia a uan instancia del modelo Oficios
+             $remitenteInterno=$this->remitentes;
+            $responseData =["remitenteExterno"=>$this->remitente_e,"remitenteCiudadano"=>$this->remitente_c,"remitenteInterno"=>$remitenteInterno];
+            return $responseData;
+
+     
+    }
+
+
+
+
+
   public function getDestinoAttribute() {
         if($this->destinatarios!=null)
             return $this->destinatarios[0]->dependencia_id;
@@ -49,13 +63,29 @@ public function getDependenciaoAttribute() {
 
 
   public function getAreadestinoAttribute() {
-        if($this->destinatarios!=null)
-            return $this->destinatarios[0]->area_id;
+        if($this->destinatarios!=null){
+
+
+            if ($this->destinatarios[0]->area_id==0) {
+                  return $this->destinatarios[0]->dependenciap;
+
+               }
+
+                return $this->destinatarios[0]->area_id;
+            }
+        
+ 
+
+
+
     }
 
 
 
     public function remitentes() {
+
+            ///en este contexto $this hace referencia a uan instancia del atributo remitentes
+
         return $this->belongsTo(Persona::class,'remitente_id');
     }
 

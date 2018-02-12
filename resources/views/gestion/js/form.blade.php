@@ -16,7 +16,6 @@ oficio.crearInsertForm2('parentF',  [
                                       {input:{label:'Número de Oficio',id:'no_oficio',type:"text"}},
                                       {input:{label:'Remitente',id:'remitente_c',type:"text"}},
                                       {select:{label:'Remitente',id:'remitente_id'}},
-                                      {select:{label:'Depedendencias',id:'dependencias'}},
                                       {select:{label:'Destinatario',id:'destinatario_id'}},
                                       {select:{label:'C.C.P.',id:'copia_id'}},
                                       {select:{label:'Elaborado por',id:'autor_id'}},

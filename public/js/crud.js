@@ -680,7 +680,7 @@ crud.prototype.llenarSelect=function(targetId,dataArray,targetValueKey,targetTex
     });
     
     $("#"+targetId).append(options);
-    
+    console.log($("#"+targetId));
 
   }
 

@@ -28,6 +28,7 @@ class CreateOficiosTable extends Migration
             $table->string('seguimiento');
             $table->string('contestacion');
             $table->string('asunto');
+            $table->string('descripcion', 2000);
             $table->string('archivo');
             $table->timestamps();
         

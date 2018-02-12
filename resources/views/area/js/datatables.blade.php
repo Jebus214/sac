@@ -108,6 +108,8 @@ var myDataTable=$('#dataTable').DataTable( {
         
         if(data==null){
            //var dataColumns = myDataTable.row( $('#dataTable tbody').parents('tr') ).data();  
+
+           console.log('----------------'+data+'--------------------')
            return "&nbspCiudadano" 
         }
         else{
@@ -116,6 +118,7 @@ var myDataTable=$('#dataTable').DataTable( {
         
     }     
    },  
+      
 
   ]
 

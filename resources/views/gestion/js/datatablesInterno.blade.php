@@ -131,8 +131,8 @@ $('#dataTableInterno tbody').on( 'click', 'button.btn-danger', function () {
          var stackDestinatarios=[];
          var stackCopias=[];
  
-          $("#m-noOficio").empty();
-          $("#m-asunto").empty();
+          $("#no_oficio").val('');
+          $("#asunto").val('');
 
 
 
@@ -153,13 +153,16 @@ $('#dataTableInterno tbody').on( 'click', 'button.btn-danger', function () {
           
 
           $("#copia_id").val(stackCopias).trigger("change");
+          $("#no_oficio").val(data.no_oficio); 
+          $("#asunto").val(data.asunto);
 
-          $("#m-noOficio").append(data.no_oficio); 
-          $("#m-asunto").append(data.asunto);
+
+
+
+
 
           $('#enviarModal').modal('toggle');
 
-    
 
     } );
 

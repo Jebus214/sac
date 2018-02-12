@@ -30,11 +30,11 @@ var tab=$('.nav-tabs .active')[0].children[0].id;
 
 switch(tab) {
     case 'externo-tab':
-        var dataTable=myDataTable;
+        var dataTable=myDataTableExterno;
         break;
     
     case 'interno-tab':
-        var dataTable=myDataTableExterno;
+        var dataTable=myDataTableInterno;
         break;
     
     case 'ciudadano-tab':
@@ -99,11 +99,11 @@ var tab=$('.nav-tabs .active')[0].children[0].id;
 
 switch(tab) {
     case 'externo-tab':
-        var dataTable=myDataTable;
+        var dataTable=myDataTableExterno;
         break;
     
     case 'interno-tab':
-        var dataTable=myDataTableExterno;
+        var dataTable=myDataTableInterno;
         break;
     
     case 'ciudadano-tab':

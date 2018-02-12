@@ -66,16 +66,23 @@ var myDataTableCiudadano=$('#dataTableCiudadano').DataTable( {
       "render": function ( data, type, full, meta ) {
         var status=data;
 
-        if (status==0) {
+
+          console.log(status[0]);
+
+
+
+
+
+        if (status[0]==0) {
           return '<button class="btn btn-danger"><i class="fa fa-file-text"></i>Enviar</button>'    
         }
 
-        if (status==1) {
+        if (status[0]==1) {
           return '<a class="btn btn-warning" href="#'+data+'">Enviado</a>'    
         }
 
 
-        if (status==2) {
+        if (status[0]==2) {
           return '<a class="btn btn-info" href="#'+data+'">Recibido</a>'    
         }
         
@@ -129,11 +136,11 @@ $('#dataTableCiudadano tbody').on( 'click', 'button.btn-primary', function () {
 $('#dataTableCiudadano tbody').on( 'click', 'button.btn-danger', function () {
          
          var data = myDataTableCiudadano.row( $(this).parents('tr') ).data();
-         var stackDestinatarios=[];
+        var stackDestinatarios=[];
          var stackCopias=[];
  
-          $("#m-noOficio").empty();
-          $("#m-asunto").empty();
+          $("#no_oficio").val('');
+          $("#asunto").val('');
 
 
 
@@ -155,11 +162,12 @@ $('#dataTableCiudadano tbody').on( 'click', 'button.btn-danger', function () {
 
           $("#copia_id").val(stackCopias).trigger("change");
 
-          $("#m-noOficio").append(data.no_oficio); 
-          $("#m-asunto").append(data.asunto);
+
+          $("#no_oficio").val(data.no_oficio); 
+          $("#asunto").val(data.asunto);
 
           $('#enviarModal').modal('toggle');
-    
+
 
     } );
 

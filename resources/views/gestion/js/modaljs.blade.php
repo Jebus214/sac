@@ -3,12 +3,20 @@
 
 var oficio=new crud('Oficio','parentT','cargarOficio','/oficio');
 var modalFormModel=[
-                    {input:{label:'No Oficio',id:'no_oficio',type:"text"}},
-                    {input:{label:'Asunto',id:'asunto',type:"text"}},                                
-                    {select:{label:'Destinatario',id:'destinatario_id'}},
-                    {select:{label:'C.C.P.',id:'copia_id'}},
+                 {input:{label:'Número de Folio',id:'no_folio',type:"text"}},
+                                      {input:{label:'Número de Oficio',id:'no_oficio',type:"text"}},
+                                      {input:{label:'Remitente',id:'remitente_c',type:"text"}},
+                                      {select:{label:'Remitente',id:'remitente_id'}},
+                                      {select:{label:'Destinatario',id:'destinatario_id'}},
+                                      {select:{label:'C.C.P.',id:'copia_id'}},
+                                      {input:{label:'Fecha de emisión',id:'fecha_emision',type:"date"}},
+                                      {input:{label:'Asunto',id:'asunto',type:"text"}},
                     {input:{label:'',id:'oficio_id',type:"hidden"}},
                     ];
+
+
+
+            
 
 oficio.crearInsertForm2('parentF',  modalFormModel);
 
@@ -34,7 +42,7 @@ $('span.select2.select2-container.select2-container--default').attr('style','wid
 
 
 
- var alert=$('<div>',{class:"alert alert-success alert-dismissible fade in",role:"alert"}).append(
+ var al=$('<div>',{class:"alert alert-success alert-dismissible fade in",role:"alert"}).append(
   $('<button>',{class:"close","data-dismiss":"alert","aria-label":"Close"}).append()
 
   ).append().append(
@@ -42,9 +50,9 @@ $('span.select2.select2-container.select2-container--default').attr('style','wid
       $('<strong>',{html:"success"})    
   );
   
-  $('#parentF').append(alert);
+  $('#parentF').append(al);
 
-  alert.hide();
+  al.hide();
 
   $("#al").hide();
 

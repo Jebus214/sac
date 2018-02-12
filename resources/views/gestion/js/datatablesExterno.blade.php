@@ -10,7 +10,7 @@ var columnsArray=[  {"data":"id"},{"data":"no_oficio"},
 
                     
 
-var myDataTable=$('#dataTableExterno').DataTable( {
+var myDataTableExterno=$('#dataTableExterno').DataTable( {
   "language":{
     "sProcessing":     "Procesando...",
     "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -89,7 +89,7 @@ var myDataTable=$('#dataTableExterno').DataTable( {
 
         
         if(data==null){
-           //var dataColumns = myDataTable.row( $('#dataTable tbody').parents('tr') ).data();  
+           //var dataColumns = myDataTableExterno.row( $('#dataTable tbody').parents('tr') ).data();  
            return "&nbsp"+ full.remitente_e; 
         }
         else{
@@ -108,7 +108,7 @@ var myDataTable=$('#dataTableExterno').DataTable( {
 $('#dataTableExterno tbody').on( 'click', 'button.btn-primary', function () {
 
 
-        var data = myDataTable.row( $(this).parents('tr') ).data();
+        var data = myDataTableExterno.row( $(this).parents('tr') ).data();
 
         console.log(data.remitentes);
 
@@ -136,7 +136,7 @@ $('#dataTableExterno tbody').on( 'click', 'button.btn-primary', function () {
 
 
 $('#dataTableExterno tbody').on( 'click', 'button.btn-danger', function () {
-        var data = myDataTable.row( $(this).parents('tr') ).data();
+        var data = myDataTableExterno.row( $(this).parents('tr') ).data();
          var stackDestinatarios=[];
          var stackCopias=[];
  
@@ -162,14 +162,12 @@ $('#dataTableExterno tbody').on( 'click', 'button.btn-danger', function () {
           
 
           $("#copia_id").val(stackCopias).trigger("change");
-
-
-          $( "#no_oficio" ).prop( "disabled", true );
-          $( "#asunto" ).prop( "disabled", true );
-  
-
           $("#no_oficio").val(data.no_oficio); 
           $("#asunto").val(data.asunto);
+
+
+
+
 
           $('#enviarModal').modal('toggle');
 
@@ -178,47 +176,3 @@ $('#dataTableExterno tbody').on( 'click', 'button.btn-danger', function () {
 
 
 
-
-$('#dataTableExterno tbody').on( 'click', 'button.btn-dangerr', function () {
-        var data = myDataTable.row( $(this).parents('tr') ).data();
-//        console.log("uploads/"+data.archivo);
-
-  
-  var data = myDataTable.row( $(this).parents('tr') ).data();
-     
-  var token=$('#token').val();
-  var jsonData={};
-  var urlRequest="";
-
-jsonData.id=data.id;  
-urlRequest='/gestion/changeStatusEnviar';
-
-
-  $.ajax({
-    url:urlRequest,
-    headers:{'X-CSRF-TOKEN':token},
-    type:'POST',
-    dataType:'json',
-    data:jsonData,
-    success:function(response){
-
-      console.log(response);
-      myDataTable.ajax.reload();
-      
-    },
-    error:function(msj){
-         //var message=msj[Object.keys(msj)];
-         console.log(msj.responseText);
-         var resObjt=JSON.parse(msj.responseText);
-         var message=resObjt[Object.keys(resObjt)];      
-         console.log(message);
-
-       }
-
-
-     });
-
-
-    
-
-    } );

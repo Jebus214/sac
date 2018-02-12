@@ -1052,7 +1052,7 @@ if ($user->permisos!=1) {
 
 }
 
-            return response()->json(['mensaje'=>"Oficio Guardado"]);
+            return response()->json(['mensaje'=>"Oficio Guardado","data"=>$doc]);
 
           }
 

@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 
 var columnsArray=[  {"data":"id"},{"data":"no_oficio"},
-                    {"data":"remitentes.fullname"},
+                    {"data":"remitenteresponse"},
                     {"data":"destinatarios[,].fullname"},
                     {"data":"destinatarios[,].dependenciap"},
                     {"data":"destinatarios[,].area.nombre"},
@@ -106,13 +106,33 @@ var myDataTable=$('#dataTable').DataTable( {
     "data": null, 
       "render": function ( data, type, full, meta ) {
         
-        if(data==null){
+          console.log(data);
+
+
+     if(data.remitenteCiudadano==""&&data.remitenteExterno==""&&data.remitenteInterno==null){
            //var dataColumns = myDataTable.row( $('#dataTable tbody').parents('tr') ).data();  
-           return "&nbspCiudadano" 
+           return "";
         }
-        else{
-          return data;  
+
+
+        if(data.remitenteCiudadano==""&&data.remitenteExterno==""){
+           //var dataColumns = myDataTable.row( $('#dataTable tbody').parents('tr') ).data();  
+           return data.remitenteInterno.fullname;
         }
+
+
+        if(data.remitenteCiudadano==""&&data.remitenteInterno==null){
+           //var dataColumns = myDataTable.row( $('#dataTable tbody').parents('tr') ).data();  
+           return data.remitenteExterno;
+        }
+
+        if(data.remitenteExterno==""&&data.remitenteInterno==null){
+           //var dataColumns = myDataTable.row( $('#dataTable tbody').parents('tr') ).data();  
+           return data.remitenteCiudadano;
+        }
+        
+
+   
         
     }     
    },  
