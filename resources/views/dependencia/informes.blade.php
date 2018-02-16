@@ -22,6 +22,7 @@
 
 @section('content')
 
+  @include('dependencia.form.reenviar')
 
           <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog-lg" role="document">
@@ -72,5 +73,7 @@
 @section('javascript')
 
      @include('dependencia.js.datatables')
+    @include('dependencia.js.reenviar')
+
 
 @endsection

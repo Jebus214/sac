@@ -9,6 +9,7 @@
                 <th>Fecha de emisión</th>
                 <th>Asunto</th>
                 <th>Estado</th>
+                <th>Reenviar</th>
                 <th>Detalle</th>
                 <th>Archivo</th>
                 

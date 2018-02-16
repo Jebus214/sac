@@ -64,7 +64,7 @@ var myDataTableInterno=$('#dataTableInterno').DataTable( {
         var status=data;
 
         if (status==0) {
-          return '<button class="btn btn-danger"><i class="fa fa-file-text"></i>Enviar</button>'    
+          return '<button class="btn btn-danger interno"><i class="fa fa-file-text"></i>Enviar</button>'    
         }
 
         if (status==1) {
@@ -125,43 +125,13 @@ $('#dataTableInterno tbody').on( 'click', 'button.btn-primary', function () {
 
 
 
-$('#dataTableInterno tbody').on( 'click', 'button.btn-danger', function () {
+$('#dataTableInterno tbody').on( 'click', 'button.btn-danger.interno', function () {
 
          var data = myDataTableInterno.row( $(this).parents('tr') ).data();
-         var stackDestinatarios=[];
-         var stackCopias=[];
- 
-          $("#no_oficio").val('');
-          $("#asunto").val('');
+       
+          $('#form-modal-interno').modal('toggle');
 
 
-
-          $('#oficio_id').val(data.id);
- 
-
-         for (var i = 0; i < data.destinatarios.length; i++) {
-           stackDestinatarios.push(data.destinatarios[i].id);
-          };
- 
-          $("#destinatario_id").val(stackDestinatarios).trigger("change");
-         
-
-
-          for (var i = 0; i < data.cpersona.length; i++) {
-           stackCopias.push(data.cpersona[i].id);
-          };
-          
-
-          $("#copia_id").val(stackCopias).trigger("change");
-          $("#no_oficio").val(data.no_oficio); 
-          $("#asunto").val(data.asunto);
-
-
-
-
-
-
-          $('#enviarModal').modal('toggle');
 
 
     } );

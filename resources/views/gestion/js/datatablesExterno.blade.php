@@ -1,4 +1,4 @@
-var columnsArray=[  {"data":"id"},{"data":"no_oficio"},
+var columnsArrayExterno=[  {"data":"id"},{"data":"no_oficio"},
                     {"data":"remitentes.fullname"},
                     {"data":"destinatarios[,].fullname"},
                     {"data":"destinatarios[,].dependenciap"},
@@ -39,7 +39,7 @@ var myDataTableExterno=$('#dataTableExterno').DataTable( {
     url:  '/gestion/capturadosExterior',
     dataSrc: ''
   },
-  "columns": columnsArray/*[{ "data": "id" },{ "data": "name" }]*/,
+  "columns": columnsArrayExterno/*[{ "data": "id" },{ "data": "name" }]*/,
 
   "columnDefs": [{
     "targets":10,
@@ -64,7 +64,7 @@ var myDataTableExterno=$('#dataTableExterno').DataTable( {
         var status=data;
 
         if (status==0) {
-          return '<button class="btn btn-danger"><i class="fa fa-file-text"></i>Enviar</button>'    
+          return '<button class="btn btn-danger externo"><i class="fa fa-file-text"></i>Enviar</button>'    
         }
 
         if (status==1) {
@@ -135,10 +135,12 @@ $('#dataTableExterno tbody').on( 'click', 'button.btn-primary', function () {
 
 
 
-$('#dataTableExterno tbody').on( 'click', 'button.btn-danger', function () {
-        var data = myDataTableExterno.row( $(this).parents('tr') ).data();
-         var stackDestinatarios=[];
-         var stackCopias=[];
+$('#dataTableExterno tbody').on( 'click', 'button.btn-danger.externo', function () {
+          console.log("vvvvvv");
+
+          var data = myDataTableCiudadano.row( $(this).parents('tr') ).data();
+          var stackDestinatarios=[];
+          var stackCopias=[];
  
           $("#no_oficio").val('');
           $("#asunto").val('');
@@ -162,14 +164,12 @@ $('#dataTableExterno tbody').on( 'click', 'button.btn-danger', function () {
           
 
           $("#copia_id").val(stackCopias).trigger("change");
+
+
           $("#no_oficio").val(data.no_oficio); 
           $("#asunto").val(data.asunto);
 
-
-
-
-
-          $('#enviarModal').modal('toggle');
+          $('#form-modal-externo').modal('toggle');
 
 
      });

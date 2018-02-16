@@ -61,16 +61,32 @@ var myDataTable=$('#dataTable').DataTable( {
   "columns": columnsArray/*[{ "data": "id" },{ "data": "name" }]*/,
 
   "columnDefs": [{
-    "targets":10,
+    "targets":11,
     "data": null,
     "defaultContent": '<button class="btn btn-primary"><i class="fa fa-file-text"></i>Ver</button>'
   } ,
   
   {
-    "targets":9,
+    "targets":10,
     "data": "id",
       "render": function ( data, type, full, meta ) {
       return '<a class="btn btn-success" href="/dep/detalle/'+data+'"><i class="fa fa-file-text"></i>detalle</a>'
+    },
+    
+
+  },
+
+  {
+    "targets":9,
+    "data": "id",
+      "render": function ( data, type, full, meta ) {
+        var status=data;
+
+
+          return '<button class="btn btn-secondary">Reenviar</button>'    
+        
+        
+      
     },
     
 
@@ -143,6 +159,19 @@ var myDataTable=$('#dataTable').DataTable( {
 
 
 
+$('#dataTable tbody').on( 'click', 'button.btn-secondary', function () {
+        
+        var data = myDataTable.row( $(this).parents('tr') ).data();
+
+        console.log('asdasdasdsad');
+
+        $('#form-message').hide();
+
+          $('#form-modal').modal('toggle');
+    } );
+
+
+
 $('#dataTable tbody').on( 'click', 'button.btn-primary', function () {
         
         var data = myDataTable.row( $(this).parents('tr') ).data();
@@ -160,6 +189,7 @@ $('#dataTable tbody').on( 'click', 'button.btn-primary', function () {
 
           $('#myModal').modal('toggle');
     } );
+
 
 
 

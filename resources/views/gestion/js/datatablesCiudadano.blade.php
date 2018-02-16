@@ -1,15 +1,14 @@
-
-
-
-var columnsArrayCiudadano=[  {"data":"id"},{"data":"no_oficio"},
-                    {"data":"remitentes.fullname"},
-                    {"data":"destinatarios[,].fullname"},
-                    {"data":"destinatarios[,].dependenciap"},
-                    {"data":"destinatarios[,].area.nombre"},
-                    {"data":"fecha_emision"},
-                    {"data":"asunto"},
-                    {"data":"destinatarios[,].pivot.recibido"},
-                    ];
+var columnsArrayCiudadano=[  
+                            {"data":"id"},
+                            {"data":"no_oficio"},
+                            {"data":"remitentes.fullname"},
+                            {"data":"destinatarios[,].fullname"},
+                            {"data":"destinatarios[,].dependenciap"},
+                            {"data":"destinatarios[,].area.nombre"},
+                            {"data":"fecha_emision"},
+                            {"data":"asunto"},
+                            {"data":"destinatarios[,].pivot.recibido"},
+                            ];
 
                     
 
@@ -74,7 +73,7 @@ var myDataTableCiudadano=$('#dataTableCiudadano').DataTable( {
 
 
         if (status[0]==0) {
-          return '<button class="btn btn-danger"><i class="fa fa-file-text"></i>Enviar</button>'    
+          return '<button class="btn btn-danger ciudadano"><i class="fa fa-file-text"></i>Enviar</button>'    
         }
 
         if (status[0]==1) {
@@ -133,8 +132,11 @@ $('#dataTableCiudadano tbody').on( 'click', 'button.btn-primary', function () {
     } );
 
 
-$('#dataTableCiudadano tbody').on( 'click', 'button.btn-danger', function () {
+$('#dataTableCiudadano tbody').on( 'click', 'button.btn-danger.ciudadano', function () {
          
+
+        console.log("asdasdasdasdasd");
+
          var data = myDataTableCiudadano.row( $(this).parents('tr') ).data();
         var stackDestinatarios=[];
          var stackCopias=[];
@@ -166,7 +168,7 @@ $('#dataTableCiudadano tbody').on( 'click', 'button.btn-danger', function () {
           $("#no_oficio").val(data.no_oficio); 
           $("#asunto").val(data.asunto);
 
-          $('#enviarModal').modal('toggle');
+          $('#form-modal-ciudadano').modal('toggle');
 
 
     } );

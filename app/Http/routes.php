@@ -16,6 +16,7 @@ use App\Area;
 use App\Dependencia;
 use App\User;
 
+use Illuminate\Http\Request;
 
 
 
@@ -187,6 +188,38 @@ Route::get('date', function () {
   $diaF=date("jS");
   $fecha=date('l jS \of F Y h:i:s A');
   return response()->json(["dia"=>$dia,"mes"=>$monthNumber,"año"=>$año,"hora"=>$hora]);
+});
+
+
+
+Route::post('/pdfTest2/',function(Request $request){
+  ini_set('max_execution_time', 300);
+  ini_set('memory_limit','1000M');
+
+  $pdf = App::make('dompdf.wrapper');
+
+  //$pdf->setOptions([ "defaultPaperSize" => "letter","defaultMediaType" => "full"]);
+
+
+
+
+  $doc=Oficio::newInstance($request->all());
+
+  $pdf->setPaper('letter', 'portrait')->loadView('reenviarpdf', ['msg' =>$request->input('no_oficio') ]);
+  
+  //$pdf->loadView('cedula_template');
+
+  if(!File::isDirectory('test'))
+    $result = File::makeDirectory('test');
+
+  $filename="myfile.pdf";
+
+
+  $pdf->save($filename)->stream();
+
+  return response()->json(["file"=>$filename]);
+
+
 });
 
 

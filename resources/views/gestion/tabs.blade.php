@@ -51,7 +51,11 @@
 </div>
 
 
-                @include('gestion.enviarmodal')
+                @include('gestion.form.ciudadano')
+
+                @include('gestion.form.externo')
+
+                @include('gestion.form.interno')
 
 
 
